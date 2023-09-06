@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Super Admin Dashboard</title>
+  <title>User Dashboard</title>
   <!-- Add Bootstrap CSS link here -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <!-- Fixed-top navbar for the Super Admin Dashboard -->
+  <!-- Fixed-top navbar for the User Dashboard -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand">User Dashboard</a>
@@ -16,7 +16,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
-          <a class="nav-link" href="#">Logout</a>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -24,6 +26,25 @@
 
   <div class="container mt-5">
     <h1>Welcome, User</h1>
+    <div class="container mt-5">
+      <h2>Create a New Chat User</h2>
+      <form (submit)="registerUser()">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" id="username" [(ngModel)]="newUser.username" name="username" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" id="email" [(ngModel)]="newUser.email" name="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" [(ngModel)]="newUser.password" name="password" class="form-control" required>
+        </div>
+        <!-- Add other user details fields here as needed -->
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
   </div>
 
   <!-- Add Bootstrap JS scripts here if needed -->
