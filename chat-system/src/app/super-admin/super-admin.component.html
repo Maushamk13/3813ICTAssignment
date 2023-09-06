@@ -1,1 +1,45 @@
-<p>super-admin works!</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Super Admin Dashboard</title>
+  <!-- Add Bootstrap CSS link here -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <!-- Fixed-top navbar for the Super Admin Dashboard -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand">Super Admin Dashboard</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <h1>Welcome, Super Admin</h1>
+
+    <h3>All Users and Roles:</h3>
+    <ul class="list-group">
+      <li *ngFor="let userData of allUsers" class="list-group-item d-flex justify-content-between align-items-center">
+        <span>{{ userData.username }}</span>
+        <div>
+          <button class="btn btn-primary mr-2" (click)="promoteToGroupAdmin(userData.username)">Promote to Group Admin</button>
+          <button class="btn btn-danger mr-2" (click)="removeUser(userData.username)">Remove User</button>
+          <button class="btn btn-success" (click)="upgradeToSuperAdmin(userData.username)">Upgrade to Super Admin</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <!-- Add Bootstrap JS scripts here if needed -->
+</body>
+</html>

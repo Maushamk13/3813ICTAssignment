@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../authentication.service';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
   ) {}
 
   login(): void {
@@ -36,7 +38,7 @@ export class LoginComponent {
       (response: any) => {
         console.log('Server Response:', response);
         this.isLoading = false; // Clear loading indicator
-        
+        this.userService.setUser(userData);
         // Check if 'usertype' exists and is an array with at least one element
         if (response['usertype'] && Array.isArray(response['usertype']) && response['usertype'].length > 0) {
           const userType = response['usertype'][0]; // Access the user type as an array element
