@@ -9,6 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { SuperAdminComponent } from './super-admin/super-admin.component';
 import { GroupAdminComponent } from './group-admin/group-admin.component';
 import { ChatUserComponent } from './chat-user/chat-user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { RegistrationService } from './registration.service';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { ChatUserComponent } from './chat-user/chat-user.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [RegistrationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

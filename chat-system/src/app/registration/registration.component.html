@@ -13,7 +13,7 @@
         <div class="card">
           <div class="card-body">
             <h2 class="card-title text-center">User Registration</h2>
-            <form>
+            <form (ngSubmit)="onRegister()">
               <div class="form-group">
                 <label for="username">Username:</label>
                 <input
@@ -21,6 +21,7 @@
                   id="username"
                   name="username"
                   class="form-control"
+                  [(ngModel)]="userData.username"
                   required
                 />
               </div>
@@ -31,6 +32,7 @@
                   id="email"
                   name="email"
                   class="form-control"
+                  [(ngModel)]="userData.email"
                   required
                 />
               </div>
@@ -41,12 +43,25 @@
                   id="password"
                   name="password"
                   class="form-control"
+                  [(ngModel)]="userData.password"
                   required
                 />
+              <div class="form-group">
+                <label for="usertype">User Type:</label>
+                <select
+                  id="usertype"
+                  name="usertype"
+                  class="form-control"
+                  [(ngModel)]="userData.usertype"
+                  required
+                >
+                  <option value="Super Admin">Super Admin</option>
+                  <option value="Group Admin">Group Admin</option>
+                  <option value="Chat User" selected>Chat User</option>
+                </select>
               </div>
-              <button type="submit" class="btn btn-primary btn-block">
-                Register
-              </button>
+                </div>
+              <button type="submit" class="btn btn-primary btn-block">Register</button>
             </form>
           </div>
         </div>

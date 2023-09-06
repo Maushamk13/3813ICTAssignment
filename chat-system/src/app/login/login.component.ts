@@ -9,34 +9,53 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   errorMessage: string = '';
-  username: string = ''; // Declare the username property
-  password: string = ''; // Declare the password property
+  username: string = '';
+  password: string = '';
+  isLoading: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  // Add login logic here
   login(): void {
-    const isLoggedIn = this.authService.login(this.username, this.password);
+    this.isLoading = true; // Set loading indicator
 
-    if (isLoggedIn) {
-      // Redirect to the appropriate dashboard based on user role
-      switch (this.authService.getUserRole()) {
-        case 'Super Admin':
-          this.router.navigate(['/super-admin']);
-          break;
-        case 'Group Admin':
-          this.router.navigate(['/group-admin']);
-          break;
-        case 'Chat User':
-          this.router.navigate(['/chat-user']);
-          break;
-        default:
-          // Handle other roles or errors here
-          break;
+    this.authService.login(this.username, this.password).subscribe(
+      (response: any) => {
+        console.log('Server Response:', response);
+        this.isLoading = false; // Clear loading indicator
+        
+        // Check if 'usertype' exists and is an array with at least one element
+        if (response['usertype'] && Array.isArray(response['usertype']) && response['usertype'].length > 0) {
+          const userType = response['usertype'][0]; // Access the user type as an array element
+          switch (userType) {
+            case 'Super Admin':
+              this.router.navigate(['/super-admin']);
+              break;
+            case 'Group Admin':
+              this.router.navigate(['/group-admin']);
+              break;
+            case 'Chat User':
+              this.router.navigate(['/chat-user']);
+              break;
+            default:
+              this.errorMessage = 'Invalid user type received from server.';
+              break;
+          }
+        } else {
+          this.errorMessage = 'Invalid username or password. Please try again.';
+        }
+      },
+      (error: any) => {
+        this.isLoading = false; // Clear loading indicator
+        console.error('Login error:', error);
+        if (error.status === 401) {
+          this.errorMessage = 'Invalid username or password. Please try again.';
+        } else {
+          this.errorMessage = 'An error occurred while logging in. Please try again later.';
+        }
       }
-    } else {
-      // Authentication failure: Show an error message
-      this.errorMessage = 'Invalid username or password. Please try again.';
-    }
+    );
   }
 }

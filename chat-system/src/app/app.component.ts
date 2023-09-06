@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
-import { mockUsers, mockGroups, mockChannels } from './mock-data/mock-data'; // Import mock data
+import { mockUsers, mockGroups, mockChannels } from '../mock-data/mock-data'; // Import mock data
 
 @Component({
   selector: 'app-root',
