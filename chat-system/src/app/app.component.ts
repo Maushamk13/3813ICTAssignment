@@ -9,6 +9,7 @@ import { mockUsers, mockGroups, mockChannels } from './mock-data/mock-data'; // 
 export class AppComponent implements OnInit {
   constructor(private localStorageService: LocalStorageService) {};
   title = 'Chat-System';
+  isLoggedIn: boolean = false;
 
   ngOnInit(): void {
     // Check if mock data is already stored, if not, store it
