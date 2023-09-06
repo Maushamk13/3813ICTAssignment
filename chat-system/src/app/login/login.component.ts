@@ -21,6 +21,17 @@ export class LoginComponent {
   login(): void {
     this.isLoading = true; // Set loading indicator
 
+    // Check if user data exists in local storage
+    const storedUserData = localStorage.getItem('userData');
+    if (!storedUserData) {
+      this.isLoading = false; // Clear loading indicator
+      this.errorMessage = 'User data not found. Please register first.';
+      return;
+    }
+
+    // Retrieve user data from local storage
+    const userData = JSON.parse(storedUserData);
+
     this.authService.login(this.username, this.password).subscribe(
       (response: any) => {
         console.log('Server Response:', response);
@@ -57,5 +68,6 @@ export class LoginComponent {
         }
       }
     );
+    localStorage.removeItem(userData);
   }
 }

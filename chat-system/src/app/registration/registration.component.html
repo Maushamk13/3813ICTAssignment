@@ -63,6 +63,11 @@
                 </div>
               <button type="submit" class="btn btn-primary btn-block">Register</button>
             </form>
+            <div *ngIf="registrationCompleted" class="alert alert-success mt-3">
+              <p class="mb-0">
+                <strong>Success!</strong> New User registered.
+              </p>
+            </div>
           </div>
         </div>
       </div>
