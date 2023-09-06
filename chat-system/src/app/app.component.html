@@ -4,12 +4,8 @@
   <meta charset="UTF-8">
   <title>Chat System</title>
   <!-- Add Bootstrap CSS link here -->
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    integrity="sha384-pzjw8f+ua7Kw1TIq0v8FqFjcJ6pajs/rfdfs3SO+kB/w5f5F5t/n1F4xKj5mm4z5"
-    crossorigin="anonymous"
-  >
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
   <style>
     /* Custom styles for the title */
     .navbar-title {
@@ -49,15 +45,6 @@
             <li class="nav-item" *ngIf="!isLoggedIn">
               <a class="nav-link" routerLink="/registration">Registration</a>
             </li>
-    
-            <!-- Show Chat and Profile links if authenticated -->
-            <li class="nav-item" *ngIf="isLoggedIn">
-              <a class="nav-link" routerLink="/chat">Chat</a>
-            </li>
-            <li class="nav-item" *ngIf="isLoggedIn">
-              <a class="nav-link" routerLink="/profile">Profile</a>
-            </li>
-            <!-- Add more navigation items here -->
           </ul>
         </div>
       </div>
